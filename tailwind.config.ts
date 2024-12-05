@@ -1,64 +1,69 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
-import type { Config } from "tailwindcss";
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+import type { Config } from 'tailwindcss';
 
-const config: Config = {
-	darkMode: ["class"],
-	content: ["./src/**/*.{html,js,svelte,ts}"],
-	safelist: ["dark"],
+export default {
+	darkMode: ['class'],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	safelist: ['dark'],
+
 	theme: {
 		container: {
 			center: true,
-			padding: "2rem",
+			padding: '2rem',
 			screens: {
-				"2xl": "1400px"
+				'2xl': '1400px'
 			}
 		},
 		extend: {
+			fontFamily: {
+				inter: ['Inter', 'sans-serif']
+			},
 			colors: {
-				border: "hsl(var(--border) / <alpha-value>)",
-				input: "hsl(var(--input) / <alpha-value>)",
-				ring: "hsl(var(--ring) / <alpha-value>)",
-				background: "hsl(var(--background) / <alpha-value>)",
-				foreground: "hsl(var(--foreground) / <alpha-value>)",
+				'theme-border': '#E5E7EB',
 				primary: {
-					DEFAULT: "hsl(var(--primary) / <alpha-value>)",
-					foreground: "hsl(var(--primary-foreground) / <alpha-value>)"
+					DEFAULT: '#818CF8',
+					500: '#6366F1'
 				},
 				secondary: {
-					DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
-					foreground: "hsl(var(--secondary-foreground) / <alpha-value>)"
-				},
-				destructive: {
-					DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
-					foreground: "hsl(var(--destructive-foreground) / <alpha-value>)"
-				},
-				muted: {
-					DEFAULT: "hsl(var(--muted) / <alpha-value>)",
-					foreground: "hsl(var(--muted-foreground) / <alpha-value>)"
+					DEFAULT: '#64748B',
+					foreground: 'hsl(var(--secondary-foreground) / <alpha-value>)'
 				},
 				accent: {
-					DEFAULT: "hsl(var(--accent) / <alpha-value>)",
-					foreground: "hsl(var(--accent-foreground) / <alpha-value>)"
+					DEFAULT: '#020617',
+					foreground: '#4E515D'
 				},
-				popover: {
-					DEFAULT: "hsl(var(--popover) / <alpha-value>)",
-					foreground: "hsl(var(--popover-foreground) / <alpha-value>)"
+				gray: {
+					DEFAULT: '#F1F5F9',
+					200: '#E7E5E4',
+					500: '#E2E8F0',
+					600: '#6B7280'
 				},
-				card: {
-					DEFAULT: "hsl(var(--card) / <alpha-value>)",
-					foreground: "hsl(var(--card-foreground) / <alpha-value>)"
+				blue: {
+					DEFAULT: '#475569',
+					500: '#4F46E5'
+				},
+				purple: {
+					DEFAULT: '#818CF8'
+				},
+				red: {
+					DEFAULT: '#EF4444'
+				},
+				yellow: {
+					DEFAULT: '#F59E0B'
+				},
+				green: {
+					DEFAULT: '#10B981'
+				},
+				cyan: {
+					DEFAULT: '#0891B2'
+				},
+				stone: {
+					DEFAULT: '#A8A29E'
 				}
-			},
-			borderRadius: {
-				lg: "var(--radius)",
-				md: "calc(var(--radius) - 2px)",
-				sm: "calc(var(--radius) - 4px)"
-			},
-			fontFamily: {
-				sans: [...fontFamily.sans]
 			}
 		}
 	},
-};
 
-export default config;
+	plugins: [typography, forms]
+} satisfies Config;
