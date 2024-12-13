@@ -5,7 +5,13 @@
 /* *********************** FONTS *********************** */
 @font-face {
 	font-family: 'Inter';
-	src: url('/font/Inter.ttf') format('truetype');
+	src: url('/fonts/Inter.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Lato';
+	src: url('/fonts/Lato-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -13,4 +19,10 @@
 /* *********************** CUSTOM GLOBAL CLASSES *********************** */
 :root {
 	font-family: 'Inter', sans-serif;
+}
+
+p {
+	@apply text-[10px] leading-4;
+	font-family: 'Lato', sans-serif;
+	color: #475569;
 }

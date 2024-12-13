@@ -17,7 +17,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				inter: ['Inter', 'sans-serif']
+				inter: ['Inter', 'sans-serif'],
+				lato: ['Lato', 'sans-serif']
 			},
 			colors: {
 				'theme-border': '#E5E7EB',
@@ -32,6 +33,9 @@ export default {
 				accent: {
 					DEFAULT: '#020617',
 					foreground: '#4E515D'
+				},
+				slate: {
+					150: '#E9EEF5'
 				},
 				gray: {
 					DEFAULT: '#F1F5F9',
