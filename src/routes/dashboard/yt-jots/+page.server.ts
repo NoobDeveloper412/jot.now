@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	try {
 		// Call backend API to fetch folders
 		const response = await request('getFolders', {}, { userId });
-		// Return folders fetched from the backend
+		console.log(response)
 		return {
 			folders: response.folders || []
 		};

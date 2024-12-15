@@ -7,7 +7,6 @@ function replaceDynamicParams(url: string, params: Record<string, string>): stri
 		url
 	);
 }
-
 export async function request<T>(
 	endpointKey: string,
 	data: object = {},
@@ -27,25 +26,18 @@ export async function request<T>(
 		const options: RequestInit = {
 			method: endpoint.method,
 			headers,
-			body: endpoint.method !== 'GET' ? JSON.stringify(data) : undefined
+			body: endpoint.method !== 'GET' ? JSON.stringify(data) : undefined,
+			credentials: 'include' // Include credentials in the request
 		};
 
 		const response = await fetch(url, options);
 
-		// Log the raw response for debugging
-		// console.log(`Raw Response:`, response);
-
 		const responseBody = await response.json();
 
-		// Log the parsed response for debugging
-		// console.log(`Parsed Response Body:`, responseBody);
-
-		// Check for non-OK responses in the body
 		if (responseBody.status !== 'ok') {
 			throw new Error(responseBody.message || 'Something went wrong');
 		}
 
-		// Return the parsed response
 		return responseBody as T;
 	} catch (error) {
 		console.error(`Request failed for ${endpointKey}:`, error);
