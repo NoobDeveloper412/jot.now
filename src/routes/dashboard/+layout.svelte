@@ -9,8 +9,7 @@
 		<MainSidebar />
 	</Sidebar.Provider>
 
-	<div>
-		<Sidebar.Trigger />
+	<div class="flex flex-col flex-1">
 		{@render children?.()}
 	</div>
 </main>
