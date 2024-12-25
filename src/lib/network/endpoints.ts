@@ -59,6 +59,62 @@ interface UpdateJotRequest {
 	description?: string;
 }
 
+// Dictionary Endpoints
+const dictionaryEndpoints = {
+	createDictionary: {
+		url: '/api/dictionary/:userId',
+		method: 'POST' // Create a new dictionary
+	},
+	getDictionaries: {
+		url: '/api/dictionary/:userId',
+		method: 'GET' // Get all dictionaries for a user
+	},
+	getDictionaryById: {
+		url: '/api/dictionary/:dictionaryId',
+		method: 'GET' // Get a single dictionary by ID
+	},
+	updateDictionary: {
+		url: '/api/dictionary/:userId/:dictionaryId',
+		method: 'PUT' // Update a dictionary by ID
+	},
+	deleteDictionary: {
+		url: '/api/dictionary/:dictionaryId',
+		method: 'DELETE' // Delete a dictionary by ID
+	}
+};
+
+// Collection Endpoints
+const collectionEndpoints = {
+	addCollection: {
+		url: '/api/dictionary/:dictionaryId/collections',
+		method: 'POST' // Add a collection to a dictionary
+	},
+	updateCollection: {
+		url: '/api/collections/:collectionId',
+		method: 'PUT' // Update a collection by ID
+	},
+	deleteCollection: {
+		url: '/api/collections/:collectionId',
+		method: 'DELETE' // Delete a collection by ID
+	}
+};
+
+// Word Endpoints
+const wordEndpoints = {
+	addWord: {
+		url: '/api/dictionary/:dictionaryId/words',
+		method: 'POST' // Add a word to a dictionary
+	},
+	updateWord: {
+		url: '/api/words/:wordId',
+		method: 'PUT' // Update a word by ID
+	},
+	deleteWord: {
+		url: '/api/words/:wordId',
+		method: 'DELETE' // Delete a word by ID
+	}
+};
+
 // Define the URL map
 export const urlMap: Record<string, Endpoint<unknown>> = {
 	// Auth Endpoints
@@ -92,10 +148,14 @@ export const urlMap: Record<string, Endpoint<unknown>> = {
 		method: 'POST',
 		requestType: {} as CreateFolderRequest
 	},
-    getFolders: {
-        url: '/api/library/:userId/folders',
-        method: 'GET',
-    },
+	getFolders: {
+		url: '/api/library/:userId/folders',
+		method: 'GET'
+	},
+	getFolderById: {
+		url: '/api/library/:userId/folders/:folderId',
+		method: 'POST'
+	},
 	updateFolder: {
 		url: '/api/library/folders/:folderId',
 		method: 'PUT',
@@ -119,7 +179,7 @@ export const urlMap: Record<string, Endpoint<unknown>> = {
 		url: '/api/library/notes/:noteId',
 		method: 'DELETE'
 	},
-	addJot: {
+	addVideoJot: {
 		url: '/api/library/notes/:noteId/jots',
 		method: 'POST',
 		requestType: {} as AddJotRequest
@@ -132,5 +192,6 @@ export const urlMap: Record<string, Endpoint<unknown>> = {
 	deleteJot: {
 		url: '/api/library/jots/:jotId',
 		method: 'DELETE'
-	}
+	},
+	...dictionaryEndpoints
 };

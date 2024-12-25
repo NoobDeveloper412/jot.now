@@ -3,7 +3,10 @@
 	import Button from '@/components/ui/button/button.svelte';
 	import Input from '@/components/ui/input/input.svelte';
 
-	export let selectedIcon, folderName, createFolder;
+	export let createFolder;
+
+	let newFolderName = '';
+	let selectedIcon = 'iconoir:math-book';
 </script>
 
 <div class="m-3 flex flex-col items-center border border-2 border-[#F2F4F7] py-20">
@@ -18,13 +21,13 @@
 		</span>
 		<Input
 			type="text"
-			bind:value={folderName}
+			bind:value={newFolderName}
 			placeholder="Folder Name"
 			class="rounded-md border border-[#E0E0E0] px-4 py-2"
 		/>
 
 		<Button
-			onclick={createFolder}
+			onclick={() => createFolder(newFolderName, selectedIcon, '')}
 			class="rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-primary"
 		>
 			Create Folder

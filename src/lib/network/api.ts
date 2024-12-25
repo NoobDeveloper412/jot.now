@@ -9,8 +9,9 @@ function replaceDynamicParams(url: string, params: Record<string, string>): stri
 }
 export async function request<T>(
 	endpointKey: string,
-	data: object = {},
-	dynamicParams: Record<string, string> = {}
+	data: object | FormData = {},
+	dynamicParams: Record<string, string> = {},
+	isFileUpload: boolean = false 
 ): Promise<T> {
 	try {
 		const endpoint = urlMap[endpointKey];
@@ -19,22 +20,26 @@ export async function request<T>(
 		const API_BASE_URL = 'http://localhost:3000';
 		const url = `${API_BASE_URL}${replaceDynamicParams(endpoint.url, dynamicParams)}`;
 
-		const headers: Record<string, string> = {
-			'Content-Type': 'application/json'
-		};
-
 		const options: RequestInit = {
 			method: endpoint.method,
-			headers,
-			body: endpoint.method !== 'GET' ? JSON.stringify(data) : undefined,
-			credentials: 'include' // Include credentials in the request
+			credentials: 'include'
 		};
+
+		if (isFileUpload && data instanceof FormData) {
+			// Handle file uploads
+			options.body = data;
+		} else {
+			// Handle JSON payloads
+			options.headers = { 'Content-Type': 'application/json' };
+			options.body = endpoint.method !== 'GET' ? JSON.stringify(data) : undefined;
+		}
 
 		const response = await fetch(url, options);
 
+		// Parse the response body
 		const responseBody = await response.json();
-
-		if (responseBody.status !== 'ok') {
+		
+		if (!responseBody) {
 			throw new Error(responseBody.message || 'Something went wrong');
 		}
 

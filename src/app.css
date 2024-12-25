@@ -15,6 +15,18 @@
 	font-weight: normal;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'OpenKhmerSchool';
+	src: url('/fonts/OpenKhmerSchool-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'OpenKhmerSchool';
+	src: url('/fonts/OpenKhmerSchool-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
 
 /* *********************** CUSTOM GLOBAL CLASSES *********************** */
 :root {
@@ -25,4 +37,15 @@ p {
 	@apply text-[10px] leading-4;
 	font-family: 'Lato', sans-serif;
 	color: #475569;
+}
+
+.theme-input {
+	@apply bg-[#F9FAFB] text-sm placeholder-[#97A1AF];
+	font-weight: 400;
+	padding: 8px 16px;
+	border: none;
+}
+
+.theme-shadow {
+	box-shadow: 0px 1px 2px 0px #141c250a;
 }

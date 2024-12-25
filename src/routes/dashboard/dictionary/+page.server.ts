@@ -6,19 +6,20 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const userId = locals.user?.id;
 
 	if (!userId) {
-		return { folders: [] }; 
+		return { dictionaries: [] }; 
 	}
 
 	try {
 		// Call backend API to fetch folders
-		const response = await request('getFolders', {}, { userId });
+		const response = await request('getDictionaries', {}, { userId }, false);
+		console.log(response)
 		return {
-			folders: response.folders || []
+			dictionaries: response || []
 		};
 	} catch (error) {
 		console.error('Error fetching folders on server:', error);
 
 		// Return empty array in case of error
-		return { folders: [] };
+		return { dictionaries: [], userId };
 	}
 };

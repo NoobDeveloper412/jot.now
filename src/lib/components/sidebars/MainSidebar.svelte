@@ -21,7 +21,7 @@
 	}
 </script>
 
-<Sidebar.Content class="bg-slate-50 px-4 py-2">
+<Sidebar.Content class="bg-gray px-4 py-2">
 	<Sidebar.Group>
 		<Sidebar.GroupLabel class="mb-4 flex items-center justify-center">
 			<img class="h-[20px] w-[85px] md:h-8 md:w-[120px]" src="/images/Logo.svg" alt="logo" />

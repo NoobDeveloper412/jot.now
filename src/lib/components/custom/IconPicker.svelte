@@ -34,9 +34,7 @@
 
 <Popover>
 	<PopoverTrigger>
-		<button class="flex items-center justify-center pt-1 rounded">
-			<Icon icon={selectedIcon} class="h-6 w-6" />
-		</button>
+		<Icon icon={selectedIcon} class="h-6 w-6" />
 	</PopoverTrigger>
 	<PopoverContent class="rounded border bg-white p-4 shadow-lg">
 		<div class="grid grid-cols-5 gap-4">

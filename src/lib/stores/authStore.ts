@@ -3,7 +3,9 @@ import { browser } from '$app/environment';
 
 // Initialize stores with localStorage data only if in browser
 export const authToken = writable(browser ? localStorage.getItem('authToken') || null : null);
-export const userData = writable(browser ? JSON.parse(localStorage.getItem('userData') || 'null') : null);
+export const userData = writable(
+	browser ? JSON.parse(localStorage.getItem('userData') || 'null') : null
+);
 
 // Update localStorage whenever the store changes, only in browser
 authToken.subscribe((value) => {
@@ -19,3 +21,4 @@ userData.subscribe((value) => {
 		else localStorage.removeItem('userData');
 	}
 });
+

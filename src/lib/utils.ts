@@ -1,8 +1,11 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-import { cubicOut } from "svelte/easing";
-import type { TransitionConfig } from "svelte/transition";
-
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { cubicOut } from 'svelte/easing';
+import type { TransitionConfig } from 'svelte/transition';
+import { browser } from '$app/environment';
+import { page } from '$app/stores';
+import { goto } from '$app/navigation';
+import { get } from 'svelte/store';
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
@@ -19,13 +22,9 @@ export const flyAndScale = (
 	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
 ): TransitionConfig => {
 	const style = getComputedStyle(node);
-	const transform = style.transform === "none" ? "" : style.transform;
+	const transform = style.transform === 'none' ? '' : style.transform;
 
-	const scaleConversion = (
-		valueA: number,
-		scaleA: [number, number],
-		scaleB: [number, number]
-	) => {
+	const scaleConversion = (valueA: number, scaleA: [number, number], scaleB: [number, number]) => {
 		const [minA, maxA] = scaleA;
 		const [minB, maxB] = scaleB;
 
@@ -35,13 +34,11 @@ export const flyAndScale = (
 		return valueB;
 	};
 
-	const styleToString = (
-		style: Record<string, number | string | undefined>
-	): string => {
+	const styleToString = (style: Record<string, number | string | undefined>): string => {
 		return Object.keys(style).reduce((str, key) => {
 			if (style[key] === undefined) return str;
 			return str + `${key}:${style[key]};`;
-		}, "");
+		}, '');
 	};
 
 	return {
@@ -60,3 +57,43 @@ export const flyAndScale = (
 		easing: cubicOut
 	};
 };
+
+export function getFileUrl(filename: string): string {
+	const API_BASE_URL = 'http://localhost:3000';
+	return `${API_BASE_URL}${filename}`;
+}
+
+export function navigateTo(endpoint?: string, id?: string | number) {
+	if (browser) {
+		const currentPath = get(page).url.pathname;
+
+		let newPath = currentPath;
+		if (endpoint) {
+			newPath += `/${endpoint}`;
+		}
+		if (id) {
+			newPath += `/${id}`;
+		}
+
+		goto(newPath);
+	}
+}
+
+/**
+ * Formats a time value in seconds into a string in the format "MM:SS" or "HH:MM:SS" if over an hour.
+ *
+ * @param seconds - The time in seconds to format.
+ * @returns A string representing the formatted time.
+ */
+export function formatTime(seconds: number): string {
+	if (isNaN(seconds) || seconds < 0) return '00:00';
+
+	const hrs = Math.floor(seconds / 3600);
+	const mins = Math.floor((seconds % 3600) / 60);
+	const secs = Math.floor(seconds % 60);
+
+	if (hrs > 0) {
+		return `${hrs}:${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+	}
+	return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
