@@ -6,7 +6,6 @@
 
 	export let folders = [];
 	export let notes = [];
-	export let jots = [];
 	export let createItem;
 
 	let newFolderName = '';

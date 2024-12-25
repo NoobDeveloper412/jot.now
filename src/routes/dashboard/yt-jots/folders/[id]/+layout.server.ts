@@ -13,7 +13,6 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 	try {
 		const response = await request('getFolderById', { folderId }, { userId });
 
-		console.log(response, '+===================');
 		return {
 			folder: response.folder
 		};

@@ -4,10 +4,12 @@
 	import PlayerControls from './PlayerControls.svelte';
 
 	export let videoLink = '';
+	let playerRef;
+	export let currentTime = 0;
+
 	let videoId = '';
 	let isYouTube = false;
 	let isVimeo = false;
-	let player;
 
 	onMount(async () => {
 		const { defineCustomElements } = await import('@vime/core');
@@ -24,26 +26,29 @@
 
 	function extractYouTubeId(link) {
 		const regex = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]+)/;
-		const match = link.match(regex);
-		return match ? match[1] : '';
+		return link.match(regex)?.[1] || '';
 	}
 
 	function extractVimeoId(link) {
 		const regex =
 			/vimeo\.com\/(?:channels\/\w+\/|groups\/\w+\/videos\/album\/\d+\/video\/|video\/|)(\d+)/;
-		const match = link.match(regex);
-		return match ? match[1] : '';
+		return link.match(regex)?.[1] || '';
+	}
+
+	// Callback for `currentTime` updates
+	function handleTimeUpdate(time) {
+		currentTime = time;
 	}
 </script>
 
 <div class="player-container">
 	<div class="video-section">
 		{#if isYouTube && videoId}
-			<vm-player bind:this={player} style="--vm-player-theme: #4f46e5;" class="video-player">
+			<vm-player bind:this={playerRef} class="video-player" style="--vm-player-theme: #4f46e5;">
 				<vm-youtube {videoId} />
 			</vm-player>
 		{:else if isVimeo && videoId}
-			<vm-player bind:this={player} style="--vm-player-theme: #4f46e5;" class="video-player">
+			<vm-player bind:this={playerRef} class="video-player" style="--vm-player-theme: #4f46e5;">
 				<vm-vimeo {videoId} />
 			</vm-player>
 		{:else}
@@ -53,7 +58,7 @@
 		{/if}
 	</div>
 
-	<PlayerControls {player} />
+	<PlayerControls player={playerRef} onTimeUpdate={handleTimeUpdate} />
 </div>
 
 <style>
