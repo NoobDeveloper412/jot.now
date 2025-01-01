@@ -11,13 +11,13 @@ export async function request<T>(
 	endpointKey: string,
 	data: object | FormData = {},
 	dynamicParams: Record<string, string> = {},
-	isFileUpload: boolean = false 
+	isFileUpload: boolean = false
 ): Promise<T> {
 	try {
 		const endpoint = urlMap[endpointKey];
 		if (!endpoint) throw new Error(`Endpoint ${endpointKey} not found`);
 
-		const API_BASE_URL = 'http://localhost:3000';
+		const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 		const url = `${API_BASE_URL}${replaceDynamicParams(endpoint.url, dynamicParams)}`;
 
 		const options: RequestInit = {
@@ -38,7 +38,7 @@ export async function request<T>(
 
 		// Parse the response body
 		const responseBody = await response.json();
-		
+
 		if (!responseBody) {
 			throw new Error(responseBody.message || 'Something went wrong');
 		}
