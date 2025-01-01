@@ -4,8 +4,10 @@
 	import PlayerControls from './PlayerControls.svelte';
 
 	export let videoLink = '';
-	let playerRef;
+	export let playerRef;
+	export let selectedJot;
 	export let currentTime = 0;
+	export let jots;
 
 	let videoId = '';
 	let isYouTube = false;
@@ -39,6 +41,14 @@
 	function handleTimeUpdate(time) {
 		currentTime = time;
 	}
+
+	// Reactively jump to the timestamp when `selectedJot` changes
+	$: {
+		if (selectedJot && playerRef) {
+			console.log(playerRef);
+			playerRef.currentTime = selectedJot.timestamp;
+		}
+	}
 </script>
 
 <div class="player-container">
@@ -58,7 +68,7 @@
 		{/if}
 	</div>
 
-	<PlayerControls player={playerRef} onTimeUpdate={handleTimeUpdate} />
+	<PlayerControls player={playerRef} onTimeUpdate={handleTimeUpdate} bind:jots />
 </div>
 
 <style>

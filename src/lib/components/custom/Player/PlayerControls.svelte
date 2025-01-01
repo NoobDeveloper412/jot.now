@@ -5,6 +5,7 @@
 
 	export let player;
 	export let onTimeUpdate;
+	export let jots;
 	let currentTime = 0;
 	let duration = 0;
 	let isPaused = true;
@@ -18,7 +19,7 @@
 				player.addEventListener('vmCurrentTimeChange', (event) => {
 					currentTime = event.detail;
 					if (onTimeUpdate) {
-						onTimeUpdate(currentTime); 
+						onTimeUpdate(currentTime);
 					}
 				});
 				player.addEventListener('vmDurationChange', (event) => {
@@ -28,9 +29,8 @@
 					isPaused = event.detail;
 				});
 				player.addEventListener('vmVolumeChange', (event) => {
-					volume = event.detail; // Keep track of volume changes
+					volume = event.detail;
 				});
-				// Set the initial volume to the player's current volume
 				volume = player.volume || 1;
 				clearInterval(waitForPlayer);
 			}
@@ -58,12 +58,14 @@
 		if (!player) return;
 		const newVolume = parseFloat(event.target.value);
 		player.volume = newVolume;
-		console.log(newVolume);
-		volume = newVolume; // Update the local volume state
+		volume = newVolume;
 	}
 
 	// Calculate progress percentage
 	$: progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+
+	// Calculate jot positions
+	$: jotMarks = jots?.map((jot) => (jot.timestamp / duration) * 100) || [];
 </script>
 
 <div class="controls-container">
@@ -86,17 +88,28 @@
 			<span class="text-[#97A1AF]">{formatTime(duration)}</span>
 		</div>
 
-		<!-- Progress Slider -->
-		<input
-			type="range"
-			class="slider flex-grow"
-			min="0"
-			max={duration || 0}
-			step="0.1"
-			value={currentTime}
-			on:input={seek}
-			style="background: linear-gradient(to right, #4f46e5 {progress}%, #97A1AF {progress}%);"
-		/>
+		<!-- Progress Slider with Marks -->
+		<div class="controls-container">
+			<div class="relative w-full">
+				<!-- Slider Input -->
+				<input
+					type="range"
+					class="slider"
+					min="0"
+					max={duration || 0}
+					step="0.1"
+					value={currentTime}
+					on:input={seek}
+					style="background: linear-gradient(to right, #4f46e5 {progress}%, #97A1AF {progress}%);"
+				/>
+				<!-- Jot Marks -->
+				<div class="marks-container">
+					{#each jotMarks as mark}
+						<div class="mark" style="left: {mark}%;"></div>
+					{/each}
+				</div>
+			</div>
+		</div>
 
 		<!-- Volume Control -->
 		<div class="relative flex items-center">
@@ -135,6 +148,7 @@
 		width: 100%;
 		z-index: 10;
 		padding: 0.5rem 0rem;
+		position: relative;
 	}
 
 	.slider {
@@ -146,6 +160,29 @@
 		border-radius: 3px;
 		outline: none;
 		transition: background 0.3s;
+		position: relative;
+		z-index: 1; /* Ensure it appears above marks */
+	}
+
+	.marks-container {
+		position: absolute;
+		top: 12px;
+		left: 0;
+		width: 100%;
+		height: 6px;
+		z-index: 1; /* Below the slider */
+		pointer-events: none; /* Prevent interaction */
+		overflow: hidden; /* Prevent marks from overflowing */
+	}
+
+	.mark {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		background-color: #4f46e5;
 	}
 
 	.slider::-webkit-slider-thumb {
