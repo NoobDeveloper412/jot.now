@@ -17,7 +17,7 @@
 	});
 </script>
 
-<svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} class="-rotate-90 transform">
+<svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} class="transform">
 	<circle
 		cx={size / 2}
 		cy={size / 2}
@@ -36,6 +36,7 @@
 		stroke-dasharray={circumference}
 		stroke-dashoffset={offset}
 		stroke-linecap="round"
+		
 		class="transition-all duration-500 ease-out"
 	/>
 	<text
@@ -43,11 +44,10 @@
 		y="50%"
 		text-anchor="middle"
 		dy=".3em"
-		transform="rotate(-90, 50, 50)"
-		font-size={`${size * 0.5}px`}
+		font-size={`${size * 0.3}px`}
 		class="font-semibold"
 		fill={color}
 	>
-		{normalizedPercentage}%
+		{normalizedPercentage}
 	</text>
 </svg>

@@ -38,7 +38,7 @@
 <div class="relative text-left" bind:this={dropdownRef}>
 	<button
 		type="button"
-		class="bg-slate-150 inline-flex w-full items-center justify-between  border border-slate-200 px-3 py-2"
+		class="bg-slate-150 inline-flex w-full items-center justify-between  border border-slate-200 px-3 py-2 rounded-lg"
 		aria-haspopup="true"
 		aria-expanded={dropdownOpen}
 		on:click={() => (dropdownOpen = !dropdownOpen)}
@@ -59,13 +59,13 @@
 			</span>
 		{/if}
 		{#if showProgress}
-			<ProgressCircularIcon percentage={75} size={12} strokeWidth={2} />
+			<ProgressCircularIcon percentage={75} size={20} strokeWidth={3}  />
 		{/if}
 	</button>
 
 	{#if dropdownOpen}
 		<div
-			class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+			class="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
 			role="menu"
 			aria-orientation="vertical"
 			aria-labelledby="menu-button"

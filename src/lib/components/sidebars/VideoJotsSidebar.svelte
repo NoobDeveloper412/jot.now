@@ -3,6 +3,7 @@
 	import { formatTime, navigateTo } from '@/utils';
 	import Input from '../ui/input/input.svelte';
 	import Icon from '@iconify/svelte';
+	import { goto } from '$app/navigation';
 
 	export let jots = [];
 	export let createItem;
@@ -25,7 +26,10 @@
 	<!-- Non-scrollable Header Section -->
 	<div>
 		<Sidebar.Group>
-			<Sidebar.GroupLabel class="flex items-center justify-center">
+			<Sidebar.GroupLabel
+				class="flex cursor-pointer items-center justify-center"
+				onclick={() => goto('/dashboard')}
+			>
 				<img class="h-[20px] w-[85px] md:h-8 md:w-[120px]" src="/images/Logo.svg" alt="logo" />
 			</Sidebar.GroupLabel>
 			<hr class="my-2 text-[#E4E7EC]" />

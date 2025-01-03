@@ -42,6 +42,7 @@
 					{ userId }
 				);
 
+				console.log(response);
 				if (response && response.folders.length > 0) {
 					await invalidate();
 					await fetchFolders();
@@ -56,11 +57,11 @@
 </script>
 
 <main class="flex h-screen">
-	<Sidebar.Provider class="max-w-[270px] bg-gray">
+	<Sidebar.Provider class="sticky top-0 h-full max-w-[270px] bg-gray">
 		<YoutubeSidebar {folders} {createFolder} />
 	</Sidebar.Provider>
 
-	<div class="flex flex-1 flex-col bg-[#F8FAFC]">
+	<div class="theme-scrollbar flex flex-1 flex-col p-4">
 		{#if isLoading}
 			<Loader />
 		{:else if folders.length < 1}

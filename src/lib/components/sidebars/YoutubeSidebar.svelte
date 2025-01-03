@@ -3,6 +3,7 @@
 	import { navigateTo } from '@/utils';
 	import Input from '../ui/input/input.svelte';
 	import Icon from '@iconify/svelte';
+	import { goto } from '$app/navigation';
 
 	export let folders = [];
 	export let notes = [];
@@ -23,7 +24,7 @@
 
 <Sidebar.Content class="border border-2 border-l-[#E4E7EC] bg-white px-4 py-2">
 	<Sidebar.Group>
-		<Sidebar.GroupLabel class="flex items-center justify-center">
+		<Sidebar.GroupLabel class="flex items-center justify-center cursor-pointer" onclick={() => goto('/dashboard')}>
 			<img class="h-[20px] w-[85px] md:h-8 md:w-[120px]" src="/images/Logo.svg" alt="logo" />
 		</Sidebar.GroupLabel>
 		<hr class="my-2 text-[#E4E7EC]" />

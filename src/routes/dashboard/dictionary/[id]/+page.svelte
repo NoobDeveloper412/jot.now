@@ -7,7 +7,7 @@
 	import * as Sidebar from '$lib/components/ui/sidebar/index';
 
 	let searchQuery = '';
-	let selectedLanguage = 'Khmer'; // Default selection
+	let selectedLanguage = 'Khmer';
 	let languages = ['Khmer', 'Phonetics', 'English'];
 	let options = [
 		{ text: 'នៅ', language: 'Khmer', phonetics: 'tve', translation: 'go', level: 1 },

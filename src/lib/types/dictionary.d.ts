@@ -1,30 +1,48 @@
-export interface Jot {
-	id: number;
-	label: string;
-	time?: string;
+export interface Example {
+	source: string;
+	phonetics?: string;
+	target: string;
 }
 
-export interface Note {
+export interface Definition {
+	sourceDefinition: string;
+	targetDefinition: string;
+	examples?: Example[];
+}
+
+export interface DefinitionGroup {
+	partOfSpeech: string;
+	definitions: Definition[];
+}
+
+export interface Word {
 	id: number;
-	label: string;
-	jots: Jot[];
-	type: 'text' | 'video' | 'audio';
+	sourceWord: string;
+	phonetics?: string;
+	targetWord: string;
+	level?: number;
+	rootWord?: string;
+	definitionsGroups?: DefinitionGroup[];
+	audio?: string;
+	image?: string;
 }
 
 export interface Folder {
 	id: number;
-	label: string;
-	notes: Note[];
-}
-
-export interface Collection {
-	id: number;
-	label: string;
-	folders: Folder[];
+	title: string;
+	subtitle?: string;
+	icon?: string;
+	folderInfo?: string;
+	words?: Word[];
+	subfolders?: Folder[];
 }
 
 export interface Dictionary {
 	id: number;
 	label: string;
-	collections: Collection[];
+	sourceLanguage: string;
+	sourcePhonetics?: string;
+	targetLanguage: string;
+	folders: Folder[];
+	thumbnail?: string;
 }

@@ -1,156 +1,195 @@
-import type { Dictionary } from '@/types/dictionary';
-
-export const dummyDictionaries: Dictionary[] = [
+export const dummyDictionaries = [
 	{
-		id: 1,
-		label: 'Khmer - English',
-		collections: [
+		id: 0,
+		sourceLanguage: 'Khmer',
+		sourcePhonetics: '',
+		targetLanguage: 'English',
+		folders: [
 			{
-				id: 1,
-				label: 'Khmer 101 Collection',
-				folders: [
+				title: 'Khmer 101 Collection',
+				subtitle: '',
+				icon: '',
+				folderInfo: '',
+				words: [],
+				subfolders: [
 					{
-						id: 1,
-						label: 'Folder 1',
-						notes: [
+						title: 'Folder 1',
+						subtitle: '',
+						icon: '',
+						folderInfo: '',
+						words: [
 							{
-								id: 1,
-								label: 'Note 1',
-								jots: [
-									{ id: 1, label: 'jotted something' },
-									{ id: 2, label: 'jotted another thing' },
-									{ id: 3, label: 'jotted a third thing' }
+								sourceWord: 'Note 1',
+								phonetics: '',
+								targetWord: '',
+								level: 1,
+								rootWord: '',
+								definitionsGroups: [
+									{
+										partOfSpeech: 'text',
+										definitions: [
+											{
+												sourceDefinition: 'jotted something',
+												targetDefinition: '',
+												examples: []
+											},
+											{
+												sourceDefinition: 'jotted another thing',
+												targetDefinition: '',
+												examples: []
+											},
+											{
+												sourceDefinition: 'jotted a third thing',
+												targetDefinition: '',
+												examples: []
+											}
+										]
+									}
 								],
-								type: 'text'
+								audio: '',
+								image: ''
 							},
 							{
-								id: 2,
-								label: 'Video Note 1',
-								jots: [
-									{ id: 1, label: 'jotted something', time: '0:42' },
-									{ id: 2, label: 'jotted another thing', time: '2:19' },
-									{ id: 3, label: 'jotted a third thing', time: '4:67' }
+								sourceWord: 'Video Note 1',
+								phonetics: '',
+								targetWord: '',
+								level: 1,
+								rootWord: '',
+								definitionsGroups: [
+									{
+										partOfSpeech: 'video',
+										definitions: [
+											{
+												sourceDefinition: 'jotted something',
+												targetDefinition: '',
+												examples: [{ source: '0:42', phonetics: '', target: '' }]
+											},
+											{
+												sourceDefinition: 'jotted another thing',
+												targetDefinition: '',
+												examples: [{ source: '2:19', phonetics: '', target: '' }]
+											},
+											{
+												sourceDefinition: 'jotted a third thing',
+												targetDefinition: '',
+												examples: [{ source: '4:67', phonetics: '', target: '' }]
+											}
+										]
+									}
 								],
-								type: 'video'
+								audio: '',
+								image: ''
 							}
-						]
-					},
-					{
-						id: 2,
-						label: 'Folder 2',
-						notes: [
-							{
-								id: 1,
-								label: 'Note 1',
-								jots: [
-									{ id: 1, label: 'basic Khmer vocab' },
-									{ id: 2, label: 'common phrases' },
-									{ id: 3, label: 'Khmer greetings' }
-								],
-								type: 'text'
-							}
-						]
+						],
+						subfolders: []
 					}
 				]
 			},
 			{
-				id: 2,
-				label: 'Khmer Year 1',
-				folders: [
+				title: 'Khmer Year 1',
+				subtitle: '',
+				icon: '',
+				folderInfo: '',
+				words: [],
+				subfolders: [
 					{
-						id: 1,
-						label: 'Audio Practice',
-						notes: [
+						title: 'Audio Practice',
+						subtitle: '',
+						icon: '',
+						folderInfo: '',
+						words: [
 							{
-								id: 1,
-								label: 'Lesson 1',
-								jots: [
-									{ id: 1, label: 'listening practice 1', time: '0:20' },
-									{ id: 2, label: 'listening practice 2', time: '1:45' }
+								sourceWord: 'Lesson 1',
+								phonetics: '',
+								targetWord: '',
+								level: 1,
+								rootWord: '',
+								definitionsGroups: [
+									{
+										partOfSpeech: 'audio',
+										definitions: [
+											{
+												sourceDefinition: 'listening practice 1',
+												targetDefinition: '',
+												examples: [{ source: '0:20', phonetics: '', target: '' }]
+											},
+											{
+												sourceDefinition: 'listening practice 2',
+												targetDefinition: '',
+												examples: [{ source: '1:45', phonetics: '', target: '' }]
+											}
+										]
+									}
 								],
-								type: 'audio'
+								audio: '',
+								image: ''
 							}
-						]
+						],
+						subfolders: []
 					}
 				]
 			}
-		]
+		],
+		thumbnail: '',
+		user: '' // Reference to the user ID
 	},
 	{
-		id: 2,
-		label: 'English - Spanish',
-		collections: [
+		id: 1,
+		sourceLanguage: 'English',
+		sourcePhonetics: '',
+		targetLanguage: 'Spanish',
+		folders: [
 			{
-				id: 1,
-				label: 'Spanish Basics',
-				folders: [
+				title: 'Spanish Basics',
+				subtitle: '',
+				icon: '',
+				folderInfo: '',
+				words: [],
+				subfolders: [
 					{
-						id: 1,
-						label: 'Beginner Words',
-						notes: [
+						title: 'Beginner Words',
+						subtitle: '',
+						icon: '',
+						folderInfo: '',
+						words: [
 							{
-								id: 1,
-								label: 'Vocabulary 1',
-								jots: [
-									{ id: 1, label: 'Hello - Hola' },
-									{ id: 2, label: 'Goodbye - Adiós' },
-									{ id: 3, label: 'Please - Por favor' }
+								sourceWord: 'Vocabulary 1',
+								phonetics: '',
+								targetWord: '',
+								level: 1,
+								rootWord: '',
+								definitionsGroups: [
+									{
+										partOfSpeech: 'text',
+										definitions: [
+											{
+												sourceDefinition: 'Hello - Hola',
+												targetDefinition: '',
+												examples: []
+											},
+											{
+												sourceDefinition: 'Goodbye - Adiós',
+												targetDefinition: '',
+												examples: []
+											},
+											{
+												sourceDefinition: 'Please - Por favor',
+												targetDefinition: '',
+												examples: []
+											}
+										]
+									}
 								],
-								type: 'text'
+								audio: '',
+								image: ''
 							}
-						]
-					}
-				]
-			},
-			{
-				id: 2,
-				label: 'Spanish Conversations',
-				folders: [
-					{
-						id: 1,
-						label: 'Daily Conversations',
-						notes: [
-							{
-								id: 1,
-								label: 'Note 1',
-								jots: [
-									{ id: 1, label: 'Ordering food' },
-									{ id: 2, label: 'Asking for directions' }
-								],
-								type: 'text'
-							}
-						]
-					}
-				]
-			}
-		]
-	},
-	{
-		id: 3,
-		label: 'French - English',
-		collections: [
-			{
-				id: 1,
-				label: 'French Grammar',
-				folders: [
-					{
-						id: 1,
-						label: 'Verb Conjugations',
-						notes: [
-							{
-								id: 1,
-								label: 'Note 1',
-								jots: [
-									{ id: 1, label: 'être - to be' },
-									{ id: 2, label: 'avoir - to have' },
-									{ id: 3, label: 'aller - to go' }
-								],
-								type: 'text'
-							}
-						]
+						],
+						subfolders: []
 					}
 				]
 			}
-		]
+		],
+		thumbnail: '',
+		user: '' // Reference to the user ID
 	}
 ];

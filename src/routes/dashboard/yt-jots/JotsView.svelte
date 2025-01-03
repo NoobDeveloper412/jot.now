@@ -26,6 +26,7 @@
 			class="rounded-lg bg-primary-500 px-6 py-3 text-white">Add Folder</Button
 		>
 	</div>
+	
 
 	<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 		{#each folders as folder}
@@ -39,7 +40,7 @@
 					<p class="text-sm font-bold">{folder.folderName}</p>
 					<p class="text-tertiary text-xs">{folder.folderInfo || 'No Info'}</p>
 
-					<p class="text-tertiary mt-1 text-xs">2 Video Notes</p>
+					<p class="text-tertiary mt-1 text-xs">{folder.notes.length || 'No'} Video Notes</p>
 				</div>
 			</div>
 		{/each}
