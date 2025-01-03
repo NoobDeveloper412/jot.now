@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import ThemeDropdown from '../custom/ThemeDropdown.svelte';
-	import FolderView from './FolderView.svelte';
 	import type { Dictionary } from '@/types/dictionary';
 	import { dummyDictionaries } from '../data/dummy';
 	import { goto } from '$app/navigation';
@@ -14,20 +13,18 @@
 	// State for selected items at each level
 	let selectedDictionaryId: number | null = null;
 	let selectedFolderId: number | null = null;
-	let selectedDictionary: Dictionary = [];
-
+	let selectedDictionary = [];
 
 	// Get the selected dictionary
 	function getSelectedDictionary() {
 		return dictionaries.find((d) => d.id === selectedDictionaryId) || null;
 	}
-	
 
 	// Filter the folders dynamically based on selected values
-	// function getFilteredFolders() {
-	// 	selectedDictionary = getSelectedDictionary();
-	// 	return selectedDictionary ? selectedDictionary.folders : [];
-	// }
+	function getFilteredFolders() {
+		selectedDictionary = getSelectedDictionary();
+		return selectedDictionary ? selectedDictionary.folders : [];
+	}
 </script>
 
 <Sidebar.Content class="bg-gray px-4 py-2">
@@ -62,15 +59,12 @@
 					/>
 				</div>
 
-				<div class="rounded-md border border-slate-200">
-					<!-- Folder Dropdowns (conditionally rendered) -->
-					<!-- {#if selectedDictionaryId}
-						<NestedCollapsible
-							items={selectedDictionary}
-							type="folder"
-							bind:selectedId={selectedFolderId}
-						/>
-					{/if} -->
+				<div class="rounded-md border border-slate-200 rounded-lg pr-1">
+					{#if selectedDictionaryId}
+						{#each getFilteredFolders() as folder}
+							<NestedCollapsible {folder} />
+						{/each}
+					{/if}
 				</div>
 			</Sidebar.Menu>
 		</Sidebar.GroupContent>

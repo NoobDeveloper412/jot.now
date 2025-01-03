@@ -12,7 +12,6 @@
 	export let iconPosition: 'start' | 'end' = 'end';
 	export let isSelected: boolean = false;
 
-
 	const dispatch = createEventDispatcher();
 
 	function toggleDropdown() {
@@ -58,9 +57,9 @@
 		<div class="mt-2 rounded-md border border-slate-200 bg-slate-150">
 			<ul class="w-full">
 				{#each items as item}
-					<li class="cursor-pointer px-4 py-2 hover:bg-gray-100" on:click={() => selectItem(item)}>
+					<p class="cursor-pointer px-4 py-2 hover:bg-gray-100" on:click={() => selectItem(item)}>
 						{item.label}
-					</li>
+					</p>
 				{/each}
 			</ul>
 
